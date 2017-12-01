@@ -5,11 +5,7 @@ This script is designed to run as a scheduled task on Windows. It uses telize.co
 
 Installation
 -------------------
-Change policy to run scripts (from CMD as Admin): 
-```
-powershell -Command "Set-ExecutionPolicy -ExecutionPolicy Unrestricted"
-```
- 
+
 Setup task scheduler instructions
 ---------------------------
 - Open the Task Scheduler.
@@ -18,9 +14,9 @@ Setup task scheduler instructions
 - On the Triggers tab, click New... and select On an Event from the dropdown box.
 - Choose the following settings:
 ```
-        Log: Microsoft-Windows-NetworkProfile/Operational
-        Source: NetworkProfile
-        Event ID: 10000
+    Log: Microsoft-Windows-WLAN-AutoConfig/Operational
+    Source: WLAN-AutoConfig
+    Event ID: 8001
 ```
 - Click OK, then go to the Conditions tab.
 - Check the box for Start only if the following network connection is available and choose the network you want to run the script with
@@ -29,10 +25,15 @@ Setup task scheduler instructions
  
 Command: 
 ```
-powershell -file update_time_zone.ps1
+powershell 
+```
+Add Arguments: 
+```
+ExecutionPolicy Bypass -file adjust_time_zone.ps1
 ```
 
 Credits
 ------------------
 This script was first created by: http://superuser.com/a/751262 
-Thank you for your clever idea!
+Modified by : https://github.com/catacraciun/
+And Finally my edits for work on Windows 10 and updated sources for reliable data
